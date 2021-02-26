@@ -50,7 +50,7 @@ export function Todolist(props: PropsType) {
             </IconButton>
         </h3>
         <AddItemForm addItem={addTask}/>
-        <ul>
+        <div>
             {
                 props.tasks.map(t => {
                     const onClickHandler = () => props.removeTask(t.id, props.id)
@@ -63,24 +63,24 @@ export function Todolist(props: PropsType) {
                     }
 
 
-                    return <li key={t.id} className={t.isDone ? "is-done" : ""}>
+                    return <div key={t.id} className={t.isDone ? "is-done" : ""}>
                         <Checkbox onChange={onChangeHandler} checked={t.isDone} color={"primary"}/>
                         <EditableSpan value={t.title} onChange={onTitleChangeHandler} />
                         <IconButton onClick={onClickHandler}>
                             <Delete />
                         </IconButton>
-                    </li>
+                    </div>
                 })
             }
-        </ul>
+        </div>
         <div>
-            <Button className={props.filter === 'all' ? "active-filter" : ""}
+            <Button variant={props.filter === 'all' ? "outlined" : "text" }
                     onClick={onAllClickHandler} color={"default"}>All
             </Button>
-            <Button className={props.filter === 'active' ? "active-filter" : ""}
+            <Button variant={props.filter === 'active' ? "outlined" : "text"}
                     onClick={onActiveClickHandler} color={"primary"}>Active
             </Button>
-            <Button className={props.filter === 'completed' ? "active-filter" : ""}
+            <Button variant={props.filter === 'completed' ? "outlined" : "text"}
                     onClick={onCompletedClickHandler} color={"secondary"}>Completed
             </Button>
         </div>
